@@ -1,0 +1,2357 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberShield Academy - Master Cybersecurity</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0B0B0B;
+            --bg-card: #1A1A1A;
+            --border-color: #2A2A2A;
+            --accent-cyan: #00E5FF;
+            --accent-magenta: #FF007F;
+            --accent-gold: #FFD700;
+            --text-primary: #FFFFFF;
+            --text-secondary: #E0E0E0;
+            --code-bg: #1E1E1E;
+            --code-text: #00FFCC;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-secondary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-cyan);
+        }
+
+        /* Glassmorphism */
+        .glass {
+            background: rgba(26, 26, 26, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(42, 42, 42, 0.5);
+        }
+
+        .glass-light {
+            background: rgba(26, 26, 26, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        /* Neon Glow Effects */
+        .glow-cyan {
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.3), 
+                        0 0 40px rgba(0, 229, 255, 0.1),
+                        inset 0 0 20px rgba(0, 229, 255, 0.05);
+        }
+
+        .glow-magenta {
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.3), 
+                        0 0 40px rgba(255, 0, 127, 0.1);
+        }
+
+        .glow-gold {
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3), 
+                        0 0 40px rgba(255, 215, 0, 0.1);
+        }
+
+        .text-glow-cyan {
+            text-shadow: 0 0 10px rgba(0, 229, 255, 0.8),
+                         0 0 20px rgba(0, 229, 255, 0.5),
+                         0 0 30px rgba(0, 229, 255, 0.3);
+        }
+
+        .text-glow-magenta {
+            text-shadow: 0 0 10px rgba(255, 0, 127, 0.8),
+                         0 0 20px rgba(255, 0, 127, 0.5);
+        }
+
+        /* Animated Gradient Border */
+        .gradient-border {
+            position: relative;
+            background: var(--bg-primary);
+            border-radius: 16px;
+        }
+
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(
+                45deg,
+                var(--accent-cyan),
+                var(--accent-magenta),
+                var(--accent-gold),
+                var(--accent-cyan)
+            );
+            background-size: 300% 300%;
+            animation: gradientMove 4s ease infinite;
+            border-radius: 18px;
+            z-index: -1;
+        }
+
+        @keyframes gradientMove {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Card Hover Effect */
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--border-color);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 30px rgba(0, 229, 255, 0.2),
+                        0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Button Styles */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-cyan) 0%, #00b8d4 100%);
+            color: #000;
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 0 25px rgba(0, 229, 255, 0.6),
+                        0 0 50px rgba(0, 229, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent-magenta);
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 12px;
+            border: 2px solid var(--accent-magenta);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-magenta);
+            color: #fff;
+            box-shadow: 0 0 25px rgba(255, 0, 127, 0.5);
+        }
+
+        .btn-download {
+            background: linear-gradient(135deg, rgba(0, 229, 255, 0.2) 0%, rgba(0, 229, 255, 0.1) 100%);
+            color: var(--accent-cyan);
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: 1px solid var(--accent-cyan);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-download:hover {
+            background: var(--accent-cyan);
+            color: #000;
+            box-shadow: 0 0 25px rgba(0, 229, 255, 0.5);
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            height: 6px;
+            background: var(--border-color);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-gold) 0%, #ffaa00 100%);
+            border-radius: 3px;
+            transition: width 0.5s ease;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Code Block */
+        .code-block {
+            background: var(--code-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px 20px;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--code-text);
+            overflow-x: auto;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            z-index: 100;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 18px;
+            border-radius: 10px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            font-size: 14px;
+        }
+
+        .sidebar-link:hover, .sidebar-link.active {
+            background: rgba(0, 229, 255, 0.1);
+            color: var(--accent-cyan);
+            border-left: 3px solid var(--accent-cyan);
+        }
+
+        .sidebar-link i {
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Accordion */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .accordion-content.open {
+            max-height: 5000px;
+        }
+
+        .accordion-header {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-header.open .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Quiz Styles */
+        .quiz-option {
+            padding: 14px 18px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 10px;
+            background: rgba(26, 26, 26, 0.5);
+        }
+
+        .quiz-option:hover {
+            border-color: var(--accent-cyan);
+            background: rgba(0, 229, 255, 0.05);
+        }
+
+        .quiz-option.selected {
+            border-color: var(--accent-cyan);
+            background: rgba(0, 229, 255, 0.1);
+        }
+
+        .quiz-option.correct {
+            border-color: #00ff88;
+            background: rgba(0, 255, 136, 0.15);
+        }
+
+        .quiz-option.incorrect {
+            border-color: #ff4444;
+            background: rgba(255, 68, 68, 0.15);
+        }
+
+        /* Language Switcher */
+        .lang-switcher {
+            position: relative;
+        }
+
+        .lang-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 8px;
+            min-width: 140px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.2s ease;
+        }
+
+        .lang-switcher:hover .lang-dropdown,
+        .lang-dropdown:hover {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Chat Icon */
+        .chat-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent-magenta) 0%, #cc0066 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            animation: chatPulse 2s infinite;
+            box-shadow: 0 0 30px rgba(255, 0, 127, 0.5);
+        }
+
+        @keyframes chatPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .chat-float:hover {
+            animation: none;
+            transform: scale(1.1);
+            box-shadow: 0 0 45px rgba(255, 0, 127, 0.7);
+        }
+
+        /* Main Content Area */
+        .main-content {
+            margin-left: 280px;
+            padding-top: 80px;
+            min-height: 100vh;
+        }
+
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            .main-content {
+                margin-left: 0;
+            }
+        }
+
+        /* Hero Particles */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--accent-cyan);
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: float 6s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0.6; }
+            50% { transform: translateY(-30px) translateX(15px); opacity: 0.3; }
+        }
+
+        /* Section Title Animation */
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-magenta));
+            border-radius: 2px;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+        }
+
+        @media (max-width: 1024px) {
+            .menu-toggle {
+                display: flex;
+            }
+        }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Focus States */
+        button:focus-visible,
+        a:focus-visible,
+        input:focus-visible {
+            outline: 2px solid var(--accent-cyan);
+            outline-offset: 2px;
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+        }
+
+        .tooltip::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-8px);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .tooltip:hover::after {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(-4px);
+        }
+
+        /* Stagger Animation */
+        .stagger-item {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: staggerIn 0.5s forwards;
+        }
+
+        @keyframes staggerIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="glass fixed top-0 left-0 right-0 h-16 z-50 flex items-center justify-between px-6 lg:pl-[296px]">
+        <div class="flex items-center gap-4">
+            <button id="menuToggle" class="menu-toggle w-10 h-10 rounded-lg bg-white/5 items-center justify-center text-xl text-gray-400 hover:text-cyan-400 transition-colors" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center">
+                    <i class="fas fa-shield-halved text-black text-sm"></i>
+                </div>
+                <span class="font-bold text-white text-lg tracking-tight">CyberShield</span>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <!-- Search -->
+            <div class="hidden md:flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 focus-within:border-cyan-500/50 transition-colors">
+                <i class="fas fa-search text-gray-500 text-sm"></i>
+                <input type="text" placeholder="Search lessons..." class="bg-transparent border-none outline-none text-sm text-white placeholder-gray-500 w-48" aria-label="Search">
+            </div>
+
+            <!-- Language Switcher -->
+            <div class="lang-switcher">
+                <button class="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 hover:border-cyan-500/50 transition-colors text-sm" aria-label="Select language">
+                    <i class="fas fa-globe text-cyan-400"></i>
+                    <span id="currentLang">English</span>
+                    <i class="fas fa-chevron-down text-xs text-gray-500"></i>
+                </button>
+                <div class="lang-dropdown glass rounded-xl p-2">
+                    <button onclick="switchLanguage('English')" class="w-full text-left px-4 py-2 rounded-lg hover:bg-white/10 transition-colors text-sm">English</button>
+                    <button onclick="switchLanguage('Arabic')" class="w-full text-left px-4 py-2 rounded-lg hover:bg-white/10 transition-colors text-sm">العربية</button>
+                    <button onclick="switchLanguage('French')" class="w-full text-left px-4 py-2 rounded-lg hover:bg-white/10 transition-colors text-sm">Français</button>
+                </div>
+            </div>
+
+            <!-- User Avatar -->
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-magenta-500 to-pink-600 flex items-center justify-center cursor-pointer hover:ring-2 ring-cyan-400 transition-all" style="background: linear-gradient(135deg, #FF007F, #cc0066);">
+                <span class="text-white font-semibold text-sm">CS</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar glass p-5 flex flex-col">
+        <div class="mb-6">
+            <h3 class="text-xs uppercase tracking-wider text-gray-500 mb-3 px-3">Course Content</h3>
+            
+            <!-- Overall Progress -->
+            <div class="mb-4 px-3">
+                <div class="flex justify-between text-xs mb-2">
+                    <span class="text-gray-400">Overall Progress</span>
+                    <span class="text-yellow-400 font-medium" id="overallProgress">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="overallProgressBar" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="flex-1 overflow-y-auto space-y-1" role="navigation" aria-label="Course navigation">
+            <a href="#computer-basics" class="sidebar-link active" data-section="computer-basics">
+                <i class="fas fa-desktop"></i>
+                <span>Computer Basics</span>
+            </a>
+            <a href="#networking" class="sidebar-link" data-section="networking">
+                <i class="fas fa-network-wired"></i>
+                <span>Networking</span>
+            </a>
+            <a href="#cybersecurity" class="sidebar-link" data-section="cybersecurity">
+                <i class="fas fa-lock"></i>
+                <span>General Security</span>
+            </a>
+            <a href="#kali-linux" class="sidebar-link" data-section="kali-linux">
+                <i class="fab fa-linux"></i>
+                <span>Kali Linux</span>
+            </a>
+            <a href="#blackarch" class="sidebar-link" data-section="blackarch">
+                <i class="fas fa-dragon"></i>
+                <span>BlackArch</span>
+            </a>
+            <a href="#social-engineering" class="sidebar-link" data-section="social-engineering">
+                <i class="fas fa-user-secret"></i>
+                <span>Social Engineering</span>
+            </a>
+        </nav>
+
+        <!-- Sidebar Footer -->
+        <div class="pt-4 mt-4 border-t border-white/10">
+            <div class="flex items-center gap-3 px-3 py-3 rounded-xl bg-gradient-to-r from-cyan-500/10 to-transparent">
+                <div class="w-10 h-10 rounded-full bg-cyan-500/20 flex items-center justify-center">
+                    <i class="fas fa-trophy text-yellow-400"></i>
+                </div>
+                <div>
+                    <p class="text-xs text-gray-400">Your Rank</p>
+                    <p class="text-sm font-semibold text-white">Security Novice</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content px-6 lg:px-12 pb-24">
+        
+        <!-- Hero Section -->
+        <section class="relative py-16 lg:py-24 overflow-hidden">
+            <!-- Animated Gradient Border Container -->
+            <div class="gradient-border p-8 lg:p-12 relative overflow-hidden">
+                <!-- Particles -->
+                <div class="absolute inset-0 pointer-events-none" id="particles"></div>
+                
+                <div class="relative z-10 max-w-3xl">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-sm mb-6">
+                        <i class="fas fa-bolt"></i>
+                        <span>Master Cybersecurity in 2024</span>
+                    </div>
+                    
+                    <h1 class="text-4xl lg:text-6xl font-bold text-white leading-tight mb-6">
+                        Become a <span class="text-glow-cyan" style="color: var(--accent-cyan);">Cyber Defense</span> Expert
+                    </h1>
+                    
+                    <p class="text-lg text-gray-400 mb-8 leading-relaxed max-w-2xl">
+                        From fundamentals to advanced penetration testing. Learn ethical hacking, network security, and social engineering defense with hands-on labs and real-world scenarios.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <button class="btn-primary flex items-center gap-2">
+                            <i class="fas fa-play"></i>
+                            Start Learning
+                        </button>
+                        <button class="btn-secondary flex items-center gap-2">
+                            <i class="fas fa-book-open"></i>
+                            View Curriculum
+                        </button>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-white/10">
+                        <div>
+                            <p class="text-3xl font-bold text-white">50+</p>
+                            <p class="text-sm text-gray-500">Lessons</p>
+                        </div>
+                        <div>
+                            <p class="text-3xl font-bold text-white">24+</p>
+                            <p class="text-sm text-gray-500">Hours Content</p>
+                        </div>
+                        <div>
+                            <p class="text-3xl font-bold text-white">15K+</p>
+                            <p class="text-sm text-gray-500">Students</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Decorative Elements -->
+                <div class="absolute top-10 right-10 w-32 h-32 rounded-full bg-cyan-500/10 blur-3xl"></div>
+                <div class="absolute bottom-10 left-1/3 w-40 h-40 rounded-full bg-pink-500/10 blur-3xl"></div>
+            </div>
+        </section>
+
+        <!-- Computer Basics Section -->
+        <section id="computer-basics" class="py-12 scroll-mt-24">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h2 class="section-title text-2xl lg:text-3xl font-bold text-white text-glow-cyan" style="color: var(--accent-cyan);">
+                        Computer Basics
+                    </h2>
+                    <p class="mt-4 text-gray-400">Foundation knowledge every cybersecurity professional needs</p>
+                </div>
+                <div class="hidden sm:block text-right">
+                    <p class="text-xs text-gray-500 mb-1">Section Progress</p>
+                    <div class="progress-bar w-32">
+                        <div class="progress-fill section-progress" data-section="computer-basics" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid gap-6">
+                <!-- Lesson Card 1 -->
+                <article class="card-hover rounded-2xl p-6 lg:p-8" style="background: var(--bg-card);" data-lesson="cb-1">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center shrink-0">
+                            <i class="fas fa-microchip text-xl" style="color: var(--accent-cyan);"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-semibold text-white mb-2">Understanding Operating Systems</h3>
+                            <p class="text-gray-400 mb-4">Learn how Windows, macOS, and Linux work at their core. Understand file systems, process management, memory allocation, and system architecture.</p>
+                            
+                            <div class="code-block mb-4">
+                                <span class="text-gray-500"># Common OS Commands</span><br>
+                                <span class="text-purple-400">ls</span> -la          <span class="text-gray-500"># List files (Linux/Mac)</span><br>
+                                <span class="text-purple-400">dir</span>             <span class="text-gray-500"># List files (Windows)</span><br>
+                                <span class="text-purple-400">ps aux</span>         <span class="text-gray-500"># Show running processes</span><br>
+                                <span class="text-purple-400">top</span> / <span class="text-purple-400">htop</span>     <span class="text-gray-500"># System monitor</span>
+                            </div>
+
+                            <div class="flex flex-wrap gap-3">
+                                <button class="btn-secondary quiz-btn text-sm py-2 px-4" data-quiz="os-quiz">
+                                    <i class="fas fa-question-circle mr-2"></i>Take Quiz
+                                </button>
+                                <button class="complete-btn btn-download text-sm" data-lesson="cb-1">
+                                    <i class="fas fa-check"></i> Mark Complete
+                                </button>
+                            </div>
+
+                            <!-- Quiz Container -->
+                            <div class="quiz-container hidden mt-6 p-6 rounded-xl bg-black/30 border border-white/10" id="os-quiz">
+                                <h4 class="font-semibold text-white mb-4 flex items-center gap-2">
+                                    <i class="fas fa-brain" style="color: var(--accent-magenta);"></i>
+                                    Quick Quiz
+                                </h4>
+                                
+                                <div class="space-y-4">
+                                    <div class="question" data-question="1">
+                                        <p class="text-sm text-gray-300 mb-3">1. Which command shows running processes in Linux?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> ls -la</div>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">B.</span> ps aux</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> cd /home</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> mkdir test</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="question" data-question="2">
+                                        <p class="text-sm text-gray-300 mb-3">2. What does an operating system manage?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> Only files</div>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">B.</span> Hardware resources & processes</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> Only network connections</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> Only user accounts</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="question" data-question="3">
+                                        <p class="text-sm text-gray-300 mb-3">3. Which is NOT a common desktop OS?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> Windows</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">B.</span> macOS</div>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">C.</span> Cisco IOS</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> Ubuntu</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button class="check-answers-btn btn-primary mt-6 text-sm py-2 px-6">
+                                    Check Answers
+                                </button>
+                                <div class="quiz-result hidden mt-4 p-4 rounded-lg"></div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Lesson Card 2 -->
+                <article class="card-hover rounded-2xl p-6 lg:p-8" style="background: var(--bg-card);" data-lesson="cb-2">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center shrink-0">
+                            <i class="fas fa-terminal text-xl" style="color: var(--accent-cyan);"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-semibold text-white mb-2">Command Line Fundamentals</h3>
+                            <p class="text-gray-400 mb-4">Master the terminal interface. Navigate file systems, manipulate files, understand permissions, and write basic shell scripts.</p>
+                            
+                            <div class="grid md:grid-cols-2 gap-4 mb-4">
+                                <div class="p-4 rounded-xl bg-black/30 border border-white/5">
+                                    <p class="text-xs text-cyan-400 mb-2 font-medium">FILE OPERATIONS</p>
+                                    <ul class="text-sm space-y-1 text-gray-400">
+                                        <li><code class="text-green-400">cp</code> - Copy files</li>
+                                        <li><code class="text-green-400">mv</code> - Move/rename</li>
+                                        <li><code class="text-green-400">rm</code> - Remove files</li>
+                                        <li><code class="text-green-400">chmod</code> - Change permissions</li>
+                                    </ul>
+                                </div>
+                                <div class="p-4 rounded-xl bg-black/30 border border-white/5">
+                                    <p class="text-xs text-pink-400 mb-2 font-medium">SYSTEM INFO</p>
+                                    <ul class="text-sm space-y-1 text-gray-400">
+                                        <li><code class="text-green-400">uname -a</code> - System info</li>
+                                        <li><code class="text-green-400">df -h</code> - Disk usage</li>
+                                        <li><code class="text-green-400">free -m</code> - Memory status</li>
+                                        <li><code class="text-green-400">whoami</code> - Current user</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap gap-3">
+                                <button class="btn-secondary quiz-btn text-sm py-2 px-4" data-quiz="cli-quiz">
+                                    <i class="fas fa-question-circle mr-2"></i>Take Quiz
+                                </button>
+                                <button class="complete-btn btn-download text-sm" data-lesson="cb-2">
+                                    <i class="fas fa-check"></i> Mark Complete
+                                </button>
+                            </div>
+
+                            <div class="quiz-container hidden mt-6 p-6 rounded-xl bg-black/30 border border-white/10" id="cli-quiz">
+                                <h4 class="font-semibold text-white mb-4 flex items-center gap-2">
+                                    <i class="fas fa-brain" style="color: var(--accent-magenta);"></i>
+                                    Quick Quiz
+                                </h4>
+                                <div class="space-y-4">
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">1. What does `rm` do?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> Rename file</div>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">B.</span> Remove/delete file</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> Read file</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> Run module</div>
+                                        </div>
+                                    </div>
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">2. Which shows disk usage?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> free -m</div>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">B.</span> df -h</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> ps aux</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> whoami</div>
+                                        </div>
+                                    </div>
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">3. What changes file permissions?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> chown</div>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">B.</span> chmod</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> chgrp</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> change</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="check-answers-btn btn-primary mt-6 text-sm py-2 px-6">Check Answers</button>
+                                <div class="quiz-result hidden mt-4 p-4 rounded-lg"></div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Networking Basics Section -->
+        <section id="networking" class="py-12 scroll-mt-24">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h2 class="section-title text-2xl lg:text-3xl font-bold text-white text-glow-cyan" style="color: var(--accent-cyan);">
+                        Networking Basics
+                    </h2>
+                    <p class="mt-4 text-gray-400">Understand how networks function and communicate</p>
+                </div>
+                <div class="hidden sm:block text-right">
+                    <p class="text-xs text-gray-500 mb-1">Section Progress</p>
+                    <div class="progress-bar w-32">
+                        <div class="progress-fill section-progress" data-section="networking" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid gap-6">
+                <article class="card-hover rounded-2xl p-6 lg:p-8" style="background: var(--bg-card);" data-lesson="net-1">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center shrink-0">
+                            <i class="fas fa-globe text-xl" style="color: var(--accent-cyan);"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-semibold text-white mb-2">TCP/IP Protocol Suite</h3>
+                            <p class="text-gray-400 mb-4">Deep dive into the protocols that power the internet. IP addressing, ports, DNS, DHCP, and the OSI model explained clearly.</p>
+                            
+                            <div class="overflow-x-auto mb-4">
+                                <table class="w-full text-sm">
+                                    <thead>
+                                        <tr class="border-b border-white/10">
+                                            <th class="text-left py-3 px-4 text-cyan-400">Layer</th>
+                                            <th class="text-left py-3 px-4 text-cyan-400">Protocol</th>
+                                            <th class="text-left py-3 px-4 text-cyan-400">Function</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-gray-400">
+                                        <tr class="border-b border-white/5">
+                                            <td class="py-3 px-4">Application</td>
+                                            <td class="py-3 px-4"><code class="text-green-400">HTTP, DNS, SSH</code></td>
+                                            <td class="py-3 px-4">User interfaces</td>
+                                        </tr>
+                                        <tr class="border-b border-white/5">
+                                            <td class="py-3 px-4">Transport</td>
+                                            <td class="py-3 px-4"><code class="text-green-400">TCP, UDP</code></td>
+                                            <td class="py-3 px-4">End-to-end delivery</td>
+                                        </tr>
+                                        <tr class="border-b border-white/5">
+                                            <td class="py-3 px-4">Internet</td>
+                                            <td class="py-3 px-4"><code class="text-green-400">IP, ICMP</code></td>
+                                            <td class="py-3 px-4">Routing & addressing</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-3 px-4">Link</td>
+                                            <td class="py-3 px-4"><code class="text-green-400">Ethernet, WiFi</code></td>
+                                            <td class="py-3 px-4">Physical transmission</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="flex flex-wrap gap-3">
+                                <button class="btn-secondary quiz-btn text-sm py-2 px-4" data-quiz="tcp-quiz">
+                                    <i class="fas fa-question-circle mr-2"></i>Take Quiz
+                                </button>
+                                <button class="complete-btn btn-download text-sm" data-lesson="net-1">
+                                    <i class="fas fa-check"></i> Mark Complete
+                                </button>
+                            </div>
+
+                            <div class="quiz-container hidden mt-6 p-6 rounded-xl bg-black/30 border border-white/10" id="tcp-quiz">
+                                <h4 class="font-semibold text-white mb-4 flex items-center gap-2">
+                                    <i class="fas fa-brain" style="color: var(--accent-magenta);"></i>
+                                    Quick Quiz
+                                </h4>
+                                <div class="space-y-4">
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">1. Which protocol ensures reliable delivery?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> UDP</div>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">B.</span> TCP</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> IP</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> HTTP</div>
+                                        </div>
+                                    </div>
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">2. What layer handles routing?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> Application</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">B.</span> Transport</div>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">C.</span> Internet</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> Link</div>
+                                        </div>
+                                    </div>
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">3. DNS operates at which layer?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">A.</span> Application</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">B.</span> Transport</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> Internet</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> Physical</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="check-answers-btn btn-primary mt-6 text-sm py-2 px-6">Check Answers</button>
+                                <div class="quiz-result hidden mt-4 p-4 rounded-lg"></div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card-hover rounded-2xl p-6 lg:p-8" style="background: var(--bg-card);" data-lesson="net-2">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center shrink-0">
+                            <i class="fas fa-network-wired text-xl" style="color: var(--accent-cyan);"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-semibold text-white mb-2">Network Tools & Scanning</h3>
+                            <p class="text-gray-400 mb-4">Essential tools for network analysis: ping, traceroute, netstat, nmap basics, Wireshark introduction.</p>
+                            
+                            <div class="code-block mb-4">
+                                <span class="text-gray-500"># Essential Network Commands</span><br><br>
+                                <span class="text-purple-400">ping</span> google.com          <span class="text-gray-500"># Test connectivity</span><br>
+                                <span class="text-purple-400">traceroute</span> 8.8.8.8      <span class="text-gray-500"># Trace path</span><br>
+                                <span class="text-purple-400">netstat</span> -tuln           <span class="text-gray-500"># Show listening ports</span><br>
+                                <span class="text-purple-400">nmap</span> -sV target_ip      <span class="text-gray-500"># Service version scan</span><br>
+                                <span class="text-purple-400">nslookup</span> domain.com     <span class="text-gray-500"># DNS lookup</span>
+                            </div>
+
+                            <div class="flex flex-wrap gap-3">
+                                <button class="btn-secondary quiz-btn text-sm py-2 px-4" data-quiz="tools-quiz">
+                                    <i class="fas fa-question-circle mr-2"></i>Take Quiz
+                                </button>
+                                <button class="complete-btn btn-download text-sm" data-lesson="net-2">
+                                    <i class="fas fa-check"></i> Mark Complete
+                                </button>
+                            </div>
+
+                            <div class="quiz-container hidden mt-6 p-6 rounded-xl bg-black/30 border border-white/10" id="tools-quiz">
+                                <h4 class="font-semibold text-white mb-4 flex items-center gap-2">
+                                    <i class="fas fa-brain" style="color: var(--accent-magenta);"></i>
+                                    Quick Quiz
+                                </h4>
+                                <div class="space-y-4">
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">1. What does ping test?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> Port status</div>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">B.</span> Network connectivity</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> DNS records</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> File transfer</div>
+                                        </div>
+                                    </div>
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">2. Which tool scans ports?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> ping</div>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">B.</span> nmap</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> nslookup</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> ifconfig</div>
+                                        </div>
+                                    </div>
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">3. What shows listening ports?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> ipconfig</div>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">B.</span> netstat</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> route</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> arp</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="check-answers-btn btn-primary mt-6 text-sm py-2 px-6">Check Answers</button>
+                                <div class="quiz-result hidden mt-4 p-4 rounded-lg"></div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- General Cybersecurity Section -->
+        <section id="cybersecurity" class="py-12 scroll-mt-24">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h2 class="section-title text-2xl lg:text-3xl font-bold text-white text-glow-cyan" style="color: var(--accent-cyan);">
+                        General Cybersecurity
+                    </h2>
+                    <p class="mt-4 text-gray-400">Core concepts every security professional must know</p>
+                </div>
+                <div class="hidden sm:block text-right">
+                    <p class="text-xs text-gray-500 mb-1">Section Progress</p>
+                    <div class="progress-bar w-32">
+                        <div class="progress-fill section-progress" data-section="cybersecurity" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid gap-6">
+                <!-- Malware -->
+                <article class="card-hover rounded-2xl p-6 lg:p-8" style="background: var(--bg-card);" data-lesson="sec-1">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0" style="background: rgba(255, 0, 127, 0.1);">
+                            <i class="fas fa-virus text-xl" style="color: var(--accent-magenta);"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-semibold text-white mb-2">Malware Types & Analysis</h3>
+                            <p class="text-gray-400 mb-4">Viruses, worms, trojans, ransomware, spyware, adware, rootkits - understand each type, how they spread, and detection methods.</p>
+                            
+                            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+                                <div class="p-4 rounded-xl bg-red-500/5 border border-red-500/20">
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <i class="fas fa-skull-crossbones text-red-400"></i>
+                                        <span class="font-medium text-red-400">Ransomware</span>
+                                    </div>
+                                    <p class="text-xs text-gray-500">Encrypts files, demands payment</p>
+                                </div>
+                                <div class="p-4 rounded-xl bg-orange-500/5 border border-orange-500/20">
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <i class="fas fa-mask text-orange-400"></i>
+                                        <span class="font-medium text-orange-400">Trojan</span>
+                                    </div>
+                                    <p class="text-xs text-gray-500">Disguises as legitimate software</p>
+                                </div>
+                                <div class="p-4 rounded-xl bg-purple-500/5 border border-purple-500/20">
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <i class="fas fa-eye-slash text-purple-400"></i>
+                                        <span class="font-medium text-purple-400">Spyware</span>
+                                    </div>
+                                    <p class="text-xs text-gray-500">Secretly monitors activity</p>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap gap-3">
+                                <button class="btn-secondary quiz-btn text-sm py-2 px-4" data-quiz="malware-quiz">
+                                    <i class="fas fa-question-circle mr-2"></i>Take Quiz
+                                </button>
+                                <button class="complete-btn btn-download text-sm" data-lesson="sec-1">
+                                    <i class="fas fa-check"></i> Mark Complete
+                                </button>
+                            </div>
+
+                            <div class="quiz-container hidden mt-6 p-6 rounded-xl bg-black/30 border border-white/10" id="malware-quiz">
+                                <h4 class="font-semibold text-white mb-4 flex items-center gap-2">
+                                    <i class="fas fa-brain" style="color: var(--accent-magenta);"></i>
+                                    Quick Quiz
+                                </h4>
+                                <div class="space-y-4">
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">1. What does ransomware do?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> Steals passwords</div>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">B.</span> Encrypts files for ransom</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> Shows ads</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> Spreads via email only</div>
+                                        </div>
+                                    </div>
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">2. A trojan disguises itself as?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">A.</span> Legitimate software</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">B.</span> Operating system</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> Antivirus</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> Firewall</div>
+                                        </div>
+                                    </div>
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">3. Rootkits hide at which level?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> Application level</div>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">B.</span> Kernel/system level</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> Browser level</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> User level</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="check-answers-btn btn-primary mt-6 text-sm py-2 px-6">Check Answers</button>
+                                <div class="quiz-result hidden mt-4 p-4 rounded-lg"></div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Phishing -->
+                <article class="card-hover rounded-2xl p-6 lg:p-8" style="background: var(--bg-card);" data-lesson="sec-2">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0" style="background: rgba(255, 0, 127, 0.1);">
+                            <i class="fas fa-fish text-xl" style="color: var(--accent-magenta);"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-semibold text-white mb-2">Phishing Awareness</h3>
+                            <p class="text-gray-400 mb-4">Email phishing, spear phishing, whaling, vishing, smishing - recognize attack patterns and protect yourself and your organization.</p>
+                            
+                            <div class="p-4 rounded-xl border-l-4 mb-4" style="border-color: var(--accent-magenta); background: rgba(255, 0, 127, 0.05);">
+                                <div class="flex items-start gap-3">
+                                    <i class="fas fa-exclamation-triangle mt-1" style="color: var(--accent-magenta);"></i>
+                                    <div>
+                                        <p class="font-medium text-white mb-1">Warning Signs of Phishing</p>
+                                        <ul class="text-sm text-gray-400 space-y-1">
+                                            <li>- Urgent or threatening language</li>
+                                            <li>- Suspicious sender addresses</li>
+                                            <li>- Requests for sensitive information</li>
+                                            <li>- Mismatched URLs or poor grammar</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap gap-3">
+                                <button class="btn-secondary quiz-btn text-sm py-2 px-4" data-quiz="phish-quiz">
+                                    <i class="fas fa-question-circle mr-2"></i>Take Quiz
+                                </button>
+                                <button class="complete-btn btn-download text-sm" data-lesson="sec-2">
+                                    <i class="fas fa-check"></i> Mark Complete
+                                </button>
+                            </div>
+
+                            <div class="quiz-container hidden mt-6 p-6 rounded-xl bg-black/30 border border-white/10" id="phish-quiz">
+                                <h4 class="font-semibold text-white mb-4 flex items-center gap-2">
+                                    <i class="fas fa-brain" style="color: var(--accent-magenta);"></i>
+                                    Quick Quiz
+                                </h4>
+                                <div class="space-y-4">
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">1. What is spear phishing?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> Mass email attack</div>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">B.</span> Targeted attack on specific person</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> Phone-based attack</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> SMS-based attack</div>
+                                        </div>
+                                    </div>
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">2. "Whaling" targets whom?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> Regular employees</div>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">B.</span> Executives/high-value targets</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> IT administrators</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> Customers</div>
+                                        </div>
+                                    </div>
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">3. Smishing uses which channel?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> Email</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">B.</span> Voice calls</div>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">C.</span> SMS/text messages</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> Social media</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="check-answers-btn btn-primary mt-6 text-sm py-2 px-6">Check Answers</button>
+                                <div class="quiz-result hidden mt-4 p-4 rounded-lg"></div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Passwords & 2FA -->
+                <article class="card-hover rounded-2xl p-6 lg:p-8" style="background: var(--bg-card);" data-lesson="sec-3">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0" style="background: rgba(255, 215, 0, 0.1);">
+                            <i class="fas fa-key text-xl" style="color: var(--accent-gold);"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-semibold text-white mb-2">Password Security & 2FA</h3>
+                            <p class="text-gray-400 mb-4">Create strong passwords, use password managers, understand hashing vs encryption, implement multi-factor authentication properly.</p>
+                            
+                            <div class="grid md:grid-cols-2 gap-4 mb-4">
+                                <div class="p-4 rounded-xl bg-green-500/5 border border-green-500/20">
+                                    <p class="text-xs text-green-400 font-medium mb-2"><i class="fas fa-check-circle mr-1"></i> STRONG PASSWORD</p>
+                                    <code class="text-sm text-gray-300">K#9x$mP2@vL!nQ4&zR</code>
+                                    <p class="text-xs text-gray-500 mt-2">16+ chars, mixed case, numbers, symbols</p>
+                                </div>
+                                <div class="p-4 rounded-xl bg-red-500/5 border border-red-500/20">
+                                    <p class="text-xs text-red-400 font-medium mb-2"><i class="fas fa-times-circle mr-1"></i> WEAK PASSWORD</p>
+                                    <code class="text-sm text-gray-300">password123</code>
+                                    <p class="text-xs text-gray-500 mt-2">Common word + simple number = cracked in seconds</p>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap gap-3">
+                                <button class="btn-secondary quiz-btn text-sm py-2 px-4" data-quiz="pass-quiz">
+                                    <i class="fas fa-question-circle mr-2"></i>Take Quiz
+                                </button>
+                                <button class="complete-btn btn-download text-sm" data-lesson="sec-3">
+                                    <i class="fas fa-check"></i> Mark Complete
+                                </button>
+                            </div>
+
+                            <div class="quiz-container hidden mt-6 p-6 rounded-xl bg-black/30 border border-white/10" id="pass-quiz">
+                                <h4 class="font-semibold text-white mb-4 flex items-center gap-2">
+                                    <i class="fas fa-brain" style="color: var(--accent-magenta);"></i>
+                                    Quick Quiz
+                                </h4>
+                                <div class="space-y-4">
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">1. What makes a password strong?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> Easy to remember words</div>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">B.</span> Length + complexity + uniqueness</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> Using birthdate</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> Same password everywhere</div>
+                                        </div>
+                                    </div>
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">2. 2FA adds what layer?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> Another password</div>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">B.</span> Second verification factor</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> Encryption</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> Firewall rules</div>
+                                        </div>
+                                    </div>
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">3. Best practice for passwords?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> Write them down</div>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">B.</span> Use a password manager</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> Share with trusted people</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> Use same one everywhere</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="check-answers-btn btn-primary mt-6 text-sm py-2 px-6">Check Answers</button>
+                                <div class="quiz-result hidden mt-4 p-4 rounded-lg"></div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Kali Linux Section -->
+        <section id="kali-linux" class="py-12 scroll-mt-24">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h2 class="section-title text-2xl lg:text-3xl font-bold text-white text-glow-cyan" style="color: var(--accent-cyan);">
+                        Kali Linux
+                    </h2>
+                    <p class="mt-4 text-gray-400">The penetration tester's operating system of choice</p>
+                </div>
+                <div class="hidden sm:flex items-center gap-4">
+                    <button class="btn-download text-sm">
+                        <i class="fas fa-download"></i>
+                        Download Cheatsheet
+                    </button>
+                    <div class="text-right">
+                        <p class="text-xs text-gray-500 mb-1">Section Progress</p>
+                        <div class="progress-bar w-32">
+                            <div class="progress-fill section-progress" data-section="kali-linux" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid gap-6">
+                <article class="card-hover rounded-2xl p-6 lg:p-8" style="background: var(--bg-card);" data-lesson="kali-1">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center shrink-0">
+                            <i class="fab fa-linux text-xl" style="color: var(--accent-cyan);"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-semibold text-white mb-2">Installation Methods</h3>
+                            <p class="text-gray-400 mb-4">Multiple ways to get Kali running: Native installation, Virtual Machine (VMware/VirtualBox), WSL2 for Windows, Docker containers, Live USB.</p>
+                            
+                            <div class="grid sm:grid-cols-2 gap-4 mb-4">
+                                <div class="p-4 rounded-xl bg-black/30 border border-white/10">
+                                    <div class="flex items-center gap-2 mb-3">
+                                        <i class="fas fa-desktop text-cyan-400"></i>
+                                        <span class="font-medium text-white">Native Install</span>
+                                    </div>
+                                    <ul class="text-sm text-gray-400 space-y-1">
+                                        <li>Full hardware access</li>
+                                        <li>Better performance</li>
+                                        <li>Dual-boot option</li>
+                                    </ul>
+                                </div>
+                                <div class="p-4 rounded-xl bg-black/30 border border-white/10">
+                                    <div class="flex items-center gap-2 mb-3">
+                                        <i class="fas fa-box text-cyan-400"></i>
+                                        <span class="font-medium text-white">Virtual Machine</span>
+                                    </div>
+                                    <ul class="text-sm text-gray-400 space-y-1">
+                                        <li>Safe sandboxed environment</li>
+                                        <li>Snapshots for testing</li>
+                                        <li>Easy to reset</li>
+                                    </ul>
+                                </div>
+                                <div class="p-4 rounded-xl bg-black/30 border border-white/10">
+                                    <div class="flex items-center gap-2 mb-3">
+                                        <i class="fab fa-windows text-cyan-400"></i>
+                                        <span class="font-medium text-white">WSL2</span>
+                                    </div>
+                                    <ul class="text-sm text-gray-400 space-y-1">
+                                        <li>Run alongside Windows</li>
+                                        <li>Fast startup</li>
+                                        <li>File system integration</li>
+                                    </ul>
+                                </div>
+                                <div class="p-4 rounded-xl bg-black/30 border border-white/10">
+                                    <div class="flex items-center gap-2 mb-3">
+                                        <i class="fab fa-docker text-cyan-400"></i>
+                                        <span class="font-medium text-white">Docker</span>
+                                    </div>
+                                    <ul class="text-sm text-gray-400 space-y-1">
+                                        <li>Lightweight containers</li>
+                                        <li>Portable environments</li>
+                                        <li>CI/CD integration</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap gap-3">
+                                <button class="btn-secondary quiz-btn text-sm py-2 px-4" data-quiz="kali-install-quiz">
+                                    <i class="fas fa-question-circle mr-2"></i>Take Quiz
+                                </button>
+                                <button class="complete-btn btn-download text-sm" data-lesson="kali-1">
+                                    <i class="fas fa-check"></i> Mark Complete
+                                </button>
+                            </div>
+
+                            <div class="quiz-container hidden mt-6 p-6 rounded-xl bg-black/30 border border-white/10" id="kali-install-quiz">
+                                <h4 class="font-semibold text-white mb-4 flex items-center gap-2">
+                                    <i class="fas fa-brain" style="color: var(--accent-magenta);"></i>
+                                    Quick Quiz
+                                </h4>
+                                <div class="space-y-4">
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">1. Which method provides full hardware access?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">A.</span> Native Installation</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">B.</span> Virtual Machine</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> Docker container</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> Live USB (read-only)</div>
+                                        </div>
+                                    </div>
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">2. What's the main advantage of VM?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> Better performance</div>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">B.</span> Safe sandboxed environment</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> Direct GPU access</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> Lower RAM usage</div>
+                                        </div>
+                                    </div>
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">3. WSL2 stands for?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> Windows Subsystem for Linux</div>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">B.</span> Windows Subsystem for Linux 2</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> Windows Security Layer 2</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> Wireless Standard Library</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="check-answers-btn btn-primary mt-6 text-sm py-2 px-6">Check Answers</button>
+                                <div class="quiz-result hidden mt-4 p-4 rounded-lg"></div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card-hover rounded-2xl p-6 lg:p-8" style="background: var(--bg-card);" data-lesson="kali-2">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center shrink-0">
+                            <i class="fas fa-terminal text-xl" style="color: var(--accent-cyan);"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-semibold text-white mb-2">Essential Kali Commands</h3>
+                            <p class="text-gray-400 mb-4">Must-know commands for reconnaissance, scanning, exploitation, and post-exploitation tasks.</p>
+                            
+                            <div class="code-block mb-4">
+                                <span class="text-gray-500"># Reconnaissance & Scanning</span><br><br>
+                                <span class="text-purple-400">nmap</span> -sC -sV -O target_ip       <span class="text-gray-500"># Full scan</span><br>
+                                <span class="text-purple-400">nikto</span> -h http://target         <span class="text-gray-500"># Web server scan</span><br>
+                                <span class="text-purple-400">theHarvester</span> -d domain.com     <span class="text-gray-500"># Email/domain recon</span><br>
+                                <span class="text-purple-400">dnsrecon</span> -d target.com        <span class="text-gray-500"># DNS enumeration</span><br><br>
+                                <span class="text-gray-500"># Exploitation Framework</span><br><br>
+                                <span class="text-purple-400">msfconsole</span>                      <span class="text-gray-500"># Metasploit console</span><br>
+                                <span class="text-purple-400">searchsploit</span> keyword           <span class="text-gray-500"># Search exploits</span><br>
+                                <span class="text-purple-400">sqlmap</span> -u "URL" --dbs         <span class="text-gray-500"># SQL injection testing</span>
+                            </div>
+
+                            <div class="flex flex-wrap gap-3">
+                                <button class="btn-secondary quiz-btn text-sm py-2 px-4" data-quiz="kali-cmd-quiz">
+                                    <i class="fas fa-question-circle mr-2"></i>Take Quiz
+                                </button>
+                                <button class="complete-btn btn-download text-sm" data-lesson="kali-2">
+                                    <i class="fas fa-check"></i> Mark Complete
+                                </button>
+                            </div>
+
+                            <div class="quiz-container hidden mt-6 p-6 rounded-xl bg-black/30 border border-white/10" id="kali-cmd-quiz">
+                                <h4 class="font-semibold text-white mb-4 flex items-center gap-2">
+                                    <i class="fas fa-brain" style="color: var(--accent-magenta);"></i>
+                                    Quick Quiz
+                                </h4>
+                                <div class="space-y-4">
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">1. What tool performs port scanning?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> sqlmap</div>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">B.</span> nmap</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> john</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> hydra</div>
+                                        </div>
+                                    </div>
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">2. msfconsole belongs to?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> Nmap suite</div>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">B.</span> Metasploit Framework</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> Aircrack-ng</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> Burp Suite</div>
+                                        </div>
+                                    </div>
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">3. searchsploit searches?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> Vulnerable services</div>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">B.</span> Public exploit databases</span>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> Password hashes</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> DNS records</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="check-answers-btn btn-primary mt-6 text-sm py-2 px-6">Check Answers</button>
+                                <div class="quiz-result hidden mt-4 p-4 rounded-lg"></div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- BlackArch Linux Section -->
+        <section id="blackarch" class="py-12 scroll-mt-24">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h2 class="section-title text-2xl lg:text-3xl font-bold text-white text-glow-cyan" style="color: var(--accent-cyan);">
+                        BlackArch Linux
+                    </h2>
+                    <p class="mt-4 text-gray-400">The hacker's distribution with 2800+ penetration testing tools</p>
+                </div>
+                <div class="hidden sm:flex items-center gap-4">
+                    <button class="btn-download text-sm">
+                        <i class="fas fa-download"></i>
+                        Download Cheatsheet
+                    </button>
+                    <div class="text-right">
+                        <p class="text-xs text-gray-500 mb-1">Section Progress</p>
+                        <div class="progress-bar w-32">
+                            <div class="progress-fill section-progress" data-section="blackarch" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid gap-6">
+                <article class="card-hover rounded-2xl p-6 lg:p-8" style="background: var(--bg-card);" data-lesson="ba-1">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0" style="background: rgba(255, 0, 127, 0.1);">
+                            <i class="fas fa-dragon text-xl" style="color: var(--accent-magenta);"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-semibold text-white mb-2">BlackArch Installation</h3>
+                            <p class="text-gray-400 mb-4">Install BlackArch as a standalone ISO, or add the repository to an existing Arch Linux installation for maximum flexibility.</p>
+                            
+                            <div class="code-block mb-4">
+                                <span class="text-gray-500"># Add BlackArch Repo to Arch Linux</span><br><br>
+                                <span class="text-purple-400">sudo</span> curl -O https://blackarch.org/strap.sh<br>
+                                <span class="text-purple-400">sudo</span> chmod +x strap.sh<br>
+                                <span class="text-purple-400">sudo</span> ./strap.sh<br><br>
+                                <span class="text-gray-500"># List available tools</span><br>
+                                <span class="text-purple-400">pacman</span> -Sgg | grep blackarch | wc -l<br><br>
+                                <span class="text-gray-500"># Install category</span><br>
+                                <span class="text-purple-400">sudo</span> pacman -S blackarch-webapp
+                            </div>
+
+                            <div class="flex flex-wrap gap-3">
+                                <button class="btn-secondary quiz-btn text-sm py-2 px-4" data-quiz="ba-install-quiz">
+                                    <i class="fas fa-question-circle mr-2"></i>Take Quiz
+                                </button>
+                                <button class="complete-btn btn-download text-sm" data-lesson="ba-1">
+                                    <i class="fas fa-check"></i> Mark Complete
+                                </button>
+                            </div>
+
+                            <div class="quiz-container hidden mt-6 p-6 rounded-xl bg-black/30 border border-white/10" id="ba-install-quiz">
+                                <h4 class="font-semibold text-white mb-4 flex items-center gap-2">
+                                    <i class="fas fa-brain" style="color: var(--accent-magenta);"></i>
+                                    Quick Quiz
+                                </h4>
+                                <div class="space-y-4">
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">1. How many tools does BlackArch have?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> 500+</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">B.</span> 1000+</div>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">C.</span> 2800+</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> 5000+</div>
+                                        </div>
+                                    </div>
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">2. BlackArch is based on?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> Debian</div>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">B.</span> Arch Linux</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> Fedora</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> Ubuntu</div>
+                                        </div>
+                                    </div>
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">3. strap.sh is used for?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> Installing Kali</span>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">B.</span> Adding BlackArch repo</span>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> Cracking passwords</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> Network scanning</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="check-answers-btn btn-primary mt-6 text-sm py-2 px-6">Check Answers</button>
+                                <div class="quiz-result hidden mt-4 p-4 rounded-lg"></div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card-hover rounded-2xl p-6 lg:p-8" style="background: var(--bg-card);" data-lesson="ba-2">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0" style="background: rgba(255, 0, 127, 0.1);">
+                            <i class="fas fa-toolbox text-xl" style="color: var(--accent-magenta);"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-semibold text-white mb-2">Essential BlackArch Tools</h3>
+                            <p class="text-gray-400 mb-4">Explore tool categories: scanner, cracker, forensic, malware, proxy, wireless, and more specialized tools unique to BlackArch.</p>
+                            
+                            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-4">
+                                <div class="p-3 rounded-lg bg-black/30 border border-white/5 text-center">
+                                    <i class="fas fa-search text-cyan-400 mb-2"></i>
+                                    <p class="text-sm font-medium text-white">scanners</p>
+                                    <p class="text-xs text-gray-500">250+ tools</p>
+                                </div>
+                                <div class="p-3 rounded-lg bg-black/30 border border-white/5 text-center">
+                                    <i class="fas fa-unlock text-pink-400 mb-2"></i>
+                                    <p class="text-sm font-medium text-white">crackers</p>
+                                    <p class="text-xs text-gray-500">180+ tools</p>
+                                </div>
+                                <div class="p-3 rounded-lg bg-black/30 border border-white/5 text-center">
+                                    <i class="fas fa-fingerprint text-yellow-400 mb-2"></i>
+                                    <p class="text-sm font-medium text-white">forensic</p>
+                                    <p class="text-xs text-gray-500">90+ tools</p>
+                                </div>
+                                <div class="p-3 rounded-lg bg-black/30 border border-white/5 text-center">
+                                    <i class="fas fa-bug text-red-400 mb-2"></i>
+                                    <p class="text-sm font-medium text-white">malware</p>
+                                    <p class="text-xs text-gray-500">120+ tools</p>
+                                </div>
+                                <div class="p-3 rounded-lg bg-black/30 border border-white/5 text-center">
+                                    <i class="fas fa-wifi text-green-400 mb-2"></i>
+                                    <p class="text-sm font-medium text-white">wireless</p>
+                                    <p class="text-xs text-gray-500">150+ tools</p>
+                                </div>
+                                <div class="p-3 rounded-lg bg-black/30 border border-white/5 text-center">
+                                    <i class="fas fa-user-secret text-purple-400 mb-2"></i>
+                                    <p class="text-sm font-medium text-white">proxy</p>
+                                    <p class="text-xs text-gray-500">80+ tools</p>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap gap-3">
+                                <button class="btn-secondary quiz-btn text-sm py-2 px-4" data-quiz="ba-tools-quiz">
+                                    <i class="fas fa-question-circle mr-2"></i>Take Quiz
+                                </button>
+                                <button class="complete-btn btn-download text-sm" data-lesson="ba-2">
+                                    <i class="fas fa-check"></i> Mark Complete
+                                </button>
+                            </div>
+
+                            <div class="quiz-container hidden mt-6 p-6 rounded-xl bg-black/30 border border-white/10" id="ba-tools-quiz">
+                                <h4 class="font-semibold text-white mb-4 flex items-center gap-2">
+                                    <i class="fas fa-brain" style="color: var(--accent-magenta);"></i>
+                                    Quick Quiz
+                                </h4>
+                                <div class="space-y-4">
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">1. Which category has most tools?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">A.</span> scanners</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">B.</span> wireless</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> forensic</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> proxy</div>
+                                        </div>
+                                    </div>
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">2. BlackArch tools are managed via?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> apt</div>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">B.</span> pacman</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> yum</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> snap</div>
+                                        </div>
+                                    </div>
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">3. What's unique about BlackArch?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> It's GUI-only</div>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">B.</span> Largest tool collection</span>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> Based on Debian</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> Commercial license</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="check-answers-btn btn-primary mt-6 text-sm py-2 px-6">Check Answers</button>
+                                <div class="quiz-result hidden mt-4 p-4 rounded-lg"></div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Social Engineering Section -->
+        <section id="social-engineering" class="py-12 scroll-mt-24">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h2 class="section-title text-2xl lg:text-3xl font-bold text-white text-glow-cyan" style="color: var(--accent-cyan);">
+                        Social Engineering
+                    </h2>
+                    <p class="mt-4 text-gray-400">The human element of cybersecurity - often the weakest link</p>
+                </div>
+                <div class="hidden sm:block text-right">
+                    <p class="text-xs text-gray-500 mb-1">Section Progress</p>
+                    <div class="progress-bar w-32">
+                        <div class="progress-fill section-progress" data-section="social-engineering" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid gap-6">
+                <!-- Definition -->
+                <article class="card-hover rounded-2xl p-6 lg:p-8" style="background: var(--bg-card);" data-lesson="se-1">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0" style="background: rgba(255, 0, 127, 0.1);">
+                            <i class="fas fa-user-tie text-xl" style="color: var(--accent-magenta);"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-semibold text-white mb-2">What is Social Engineering?</h3>
+                            <p class="text-gray-400 mb-4">Social engineering is the art of manipulating people to divulge confidential information or perform actions that compromise security. Unlike technical attacks, it exploits human psychology rather than system vulnerabilities.</p>
+                            
+                            <div class="p-5 rounded-xl border-l-4 mb-4" style="border-color: var(--accent-magenta); background: linear-gradient(90deg, rgba(255, 0, 127, 0.08), transparent);">
+                                <blockquote class="text-lg italic text-gray-300">
+                                    "Amateurs hack systems, professionals hack people."
+                                </blockquote>
+                                <cite class="text-sm text-gray-500 not-italic block mt-2">— Bruce Schneier, Security Expert</cite>
+                            </div>
+
+                            <div class="flex flex-wrap gap-3">
+                                <button class="btn-secondary quiz-btn text-sm py-2 px-4" data-quiz="se-def-quiz">
+                                    <i class="fas fa-question-circle mr-2"></i>Take Quiz
+                                </button>
+                                <button class="complete-btn btn-download text-sm" data-lesson="se-1">
+                                    <i class="fas fa-check"></i> Mark Complete
+                                </button>
+                            </div>
+
+                            <div class="quiz-container hidden mt-6 p-6 rounded-xl bg-black/30 border border-white/10" id="se-def-quiz">
+                                <h4 class="font-semibold text-white mb-4 flex items-center gap-2">
+                                    <i class="fas fa-brain" style="color: var(--accent-magenta);"></i>
+                                    Quick Quiz
+                                </h4>
+                                <div class="space-y-4">
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">1. Social engineering targets?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> Computers directly</div>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">B.</span> Human psychology</span>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> Network protocols</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> Encryption algorithms</span>
+                                        </div>
+                                    </div>
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">2. Why is it effective?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> Uses advanced technology</span>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">B.</span> Humans are often the weakest link</span>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> Bypasses firewalls easily</span>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> Works on AI systems</span>
+                                        </div>
+                                    </div>
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">3. The quote suggests?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> Systems are unimportant</span>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">B.</span> Human manipulation is more sophisticated</span>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> Amateurs should not hack</span>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> Professionals don't hack systems</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="check-answers-btn btn-primary mt-6 text-sm py-2 px-6">Check Answers</button>
+                                <div class="quiz-result hidden mt-4 p-4 rounded-lg"></div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Types of Social Engineering -->
+                <article class="card-hover rounded-2xl p-6 lg:p-8" style="background: var(--bg-card);" data-lesson="se-2">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0" style="background: rgba(255, 0, 127, 0.1);">
+                            <i class="fas fa-list-ul text-xl" style="color: var(--accent-magenta);"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-semibold text-white mb-2">Types of Social Engineering Attacks</h3>
+                            <p class="text-gray-400 mb-4">Understanding different attack vectors helps you recognize and defend against them.</p>
+                            
+                            <div class="grid md:grid-cols-2 gap-4 mb-4">
+                                <!-- Phishing -->
+                                <div class="p-5 rounded-xl bg-gradient-to-br from-red-500/10 to-transparent border border-red-500/20">
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <div class="w-10 h-10 rounded-lg bg-red-500/20 flex items-center justify-center">
+                                            <i class="fas fa-envelope-open-text text-red-400"></i>
+                                        </div>
+                                        <h4 class="font-semibold text-white">Phishing</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-400">Fraudulent emails masquerading as legitimate sources to steal credentials or install malware. Can be mass-targeted or highly personalized (spear phishing).</p>
+                                </div>
+
+                                <!-- Pretexting -->
+                                <div class="p-5 rounded-xl bg-gradient-to-br from-orange-500/10 to-transparent border border-orange-500/20">
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <div class="w-10 h-10 rounded-lg bg-orange-500/20 flex items-center justify-center">
+                                            <i class="fas fa-theater-masks text-orange-400"></i>
+                                        </div>
+                                        <h4 class="font-semibold text-white">Pretexting</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-400">Creating a fabricated scenario (pretext) to steal information. Attacker builds trust through a carefully crafted backstory before making requests.</p>
+                                </div>
+
+                                <!-- Baiting -->
+                                <div class="p-5 rounded-xl bg-gradient-to-br from-yellow-500/10 to-transparent border border-yellow-500/20">
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <div class="w-10 h-10 rounded-lg bg-yellow-500/20 flex items-center justify-center">
+                                            <i class="fas fa-fish text-yellow-400"></i>
+                                        </div>
+                                        <h4 class="font-semibold text-white">Baiting</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-400">Exploiting curiosity or greed. Examples: infected USB drives labeled "Payroll" left in parking lots, "free movie download" links containing malware.</p>
+                                </div>
+
+                                <!-- Tailgating -->
+                                <div class="p-5 rounded-xl bg-gradient-to-br from-purple-500/10 to-transparent border border-purple-500/20">
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <div class="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center">
+                                            <i class="fas fa-door-open text-purple-400"></i>
+                                        </div>
+                                        <h4 class="font-semibold text-white">Tailgating / Piggybacking</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-400">Physically following authorized personnel into restricted areas without proper credentials. Often combined with social pretext like carrying heavy items.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap gap-3">
+                                <button class="btn-secondary quiz-btn text-sm py-2 px-4" data-quiz="se-types-quiz">
+                                    <i class="fas fa-question-circle mr-2"></i>Take Quiz
+                                </button>
+                                <button class="complete-btn btn-download text-sm" data-lesson="se-2">
+                                    <i class="fas fa-check"></i> Mark Complete
+                                </button>
+                            </div>
+
+                            <div class="quiz-container hidden mt-6 p-6 rounded-xl bg-black/30 border border-white/10" id="se-types-quiz">
+                                <h4 class="font-semibold text-white mb-4 flex items-center gap-2">
+                                    <i class="fas fa-brain" style="color: var(--accent-magenta);"></i>
+                                    Quick Quiz
+                                </h4>
+                                <div class="space-y-4">
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">1. Baiting exploits which emotion?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> Fear</div>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">B.</span> Curiosity/Greed</span>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> Anger</div>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> Sadness</span>
+                                        </div>
+                                    </div>
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">2. Pretexting involves?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> Sending mass emails</span>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">B.</span> Creating fake scenarios</span>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> Physical access</span>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> USB drops</span>
+                                        </div>
+                                    </div>
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">3. Tailgating is primarily?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> Digital attack</span>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">B.</span> Physical breach</span>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> Network intrusion</span>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> Web attack</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="check-answers-btn btn-primary mt-6 text-sm py-2 px-6">Check Answers</button>
+                                <div class="quiz-result hidden mt-4 p-4 rounded-lg"></div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Case Study -->
+                <article class="card-hover rounded-2xl p-6 lg:p-8" style="background: var(--bg-card);" data-lesson="se-3">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0" style="background: rgba(255, 215, 0, 0.1);">
+                            <i class="fas fa-scroll text-xl" style="color: var(--accent-gold);"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-semibold text-white mb-2">Real-World Case Study: RSA SecurID Breach (2011)</h3>
+                            <p class="text-gray-400 mb-4">One of the most significant social engineering attacks in history that compromised millions of secure authentication tokens worldwide.</p>
+                            
+                            <div class="p-5 rounded-xl mb-4" style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.05), rgba(255, 0, 127, 0.05)); border: 1px solid rgba(255, 215, 0, 0.2);">
+                                <h4 class="font-semibold text-white mb-3 flex items-center gap-2">
+                                    <i class="fas fa-exclamation-circle" style="color: var(--accent-gold);"></i>
+                                    Attack Timeline
+                                </h4>
+                                <div class="space-y-3">
+                                    <div class="flex gap-3">
+                                        <div class="w-20 shrink-0 text-xs font-mono text-cyan-400">Phase 1</div>
+                                        <p class="text-sm text-gray-400">Attackers sent two separate phishing emails with Excel spreadsheet attachments to small groups of RSA employees. Subject: "2011 Recruitment Plan"</p>
+                                    </div>
+                                    <div class="flex gap-3">
+                                        <div class="w-20 shrink-0 text-xs font-mono text-cyan-400">Phase 2</div>
+                                        <p class="text-sm text-gray-400">One employee opened the attachment, executing a zero-day Flash exploit (CVE-2011-0609) that installed Poison Ivy remote access trojan</p>
+                                    </div>
+                                    <div class="flex gap-3">
+                                        <div class="w-20 shrink-0 text-xs font-mono text-cyan-400">Phase 3</div>
+                                        <p class="text-sm text-gray-400">Attackers moved laterally over weeks, eventually accessing and exfiltrating SecurID token seed data</p>
+                                    </div>
+                                    <div class="flex gap-3">
+                                        <div class="w-20 shrink-0 text-xs font-mono text-red-400">Impact</div>
+                                        <p class="text-sm text-gray-400">$66 million cost to RSA. Lockheed Martin, other defense contractors had to replace all tokens. Trust in 2FA shaken globally.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap gap-3">
+                                <button class="btn-secondary quiz-btn text-sm py-2 px-4" data-quiz="se-case-quiz">
+                                    <i class="fas fa-question-circle mr-2"></i>Take Quiz
+                                </button>
+                                <button class="complete-btn btn-download text-sm" data-lesson="se-3">
+                                    <i class="fas fa-check"></i> Mark Complete
+                                </button>
+                            </div>
+
+                            <div class="quiz-container hidden mt-6 p-6 rounded-xl bg-black/30 border border-white/10" id="se-case-quiz">
+                                <h4 class="font-semibold text-white mb-4 flex items-center gap-2">
+                                    <i class="fas fa-brain" style="color: var(--accent-magenta);"></i>
+                                    Quick Quiz
+                                </h4>
+                                <div class="space-y-4">
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">1. Initial attack vector was?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">A.</span> Phishing email with malicious attachment</span>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">B.</span> Physical break-in</span>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> SQL injection</span>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> Zero-day web exploit</span>
+                                        </div>
+                                    </div>
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">2. What was stolen?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> Customer credit cards</span>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">B.</span> SecurID token seed data</span>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> Source code</span>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> Employee passwords</span>
+                                        </div>
+                                    </div>
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">3. Cost to RSA was approximately?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> $10 million</span>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">B.</span> $66 million</span>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> $100 million</span>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> $1 billion</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="check-answers-btn btn-primary mt-6 text-sm py-2 px-6">Check Answers</button>
+                                <div class="quiz-result hidden mt-4 p-4 rounded-lg"></div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Prevention -->
+                <article class="card-hover rounded-2xl p-6 lg:p-8" style="background: var(--bg-card);" data-lesson="se-4">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0" style="background: rgba(0, 255, 136, 0.1);">
+                            <i class="fas fa-shield-alt text-xl text-green-400"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-semibold text-white mb-2">Prevention Strategies</h3>
+                            <p class="text-gray-400 mb-4">Defense against social engineering requires both technical controls and human awareness training.</p>
+                            
+                            <div class="grid md:grid-cols-2 gap-4 mb-4">
+                                <div class="p-4 rounded-xl bg-green-500/5 border border-green-500/20">
+                                    <h4 class="font-medium text-green-400 mb-2 flex items-center gap-2">
+                                        <i class="fas fa-graduation-cap"></i>
+                                        Training & Awareness
+                                    </h4>
+                                    <ul class="text-sm text-gray-400 space-y-1">
+                                        <li>Regular security awareness training</li>
+                                        <li>Simulated phishing exercises</li>
+                                        <li>Clear reporting procedures</li>
+                                        <li>Verify identity protocols</li>
+                                    </ul>
+                                </div>
+                                <div class="p-4 rounded-xl bg-green-500/5 border border-green-500/20">
+                                    <h4 class="font-medium text-green-400 mb-2 flex items-center gap-2">
+                                        <i class="fas fa-cogs"></i>
+                                        Technical Controls
+                                    </h4>
+                                    <ul class="text-sm text-gray-400 space-y-1">
+                                        <li>Email filtering & SPF/DKIM/DMARC</li>
+                                        <li>MFA enforcement</li>
+                                        <li>Access control & least privilege</li>
+                                        <li>Physical security measures</li>
+                                    </ul>
+                                </div>
+                                <div class="p-4 rounded-xl bg-green-500/5 border border-green-500/20">
+                                    <h4 class="font-medium text-green-400 mb-2 flex items-center gap-2">
+                                        <i class="fas fa-file-contract"></i>
+                                        Policies & Procedures
+                                    </h4>
+                                    <ul class="text-sm text-gray-400 space-y-1">
+                                        <li>Data classification policies</li>
+                                        <li>Incident response plans</li>
+                                        <li>Vendor verification processes</li>
+                                        <li>Information handling guidelines</li>
+                                    </ul>
+                                </div>
+                                <div class="p-4 rounded-xl bg-green-500/5 border border-green-500/20">
+                                    <h4 class="font-medium text-green-400 mb-2 flex items-center gap-2">
+                                        <i class="fas fa-users"></i>
+                                        Culture & Mindset
+                                    </h4>
+                                    <ul class="text-sm text-gray-400 space-y-1">
+                                        <li>"Trust but verify" mentality</li>
+                                        <li>No shame reporting culture</li>
+                                        <li>Leadership buy-in</li>
+                                        <li>Continuous improvement</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap gap-3">
+                                <button class="btn-secondary quiz-btn text-sm py-2 px-4" data-quiz="se-prev-quiz">
+                                    <i class="fas fa-question-circle mr-2"></i>Take Quiz
+                                </button>
+                                <button class="complete-btn btn-download text-sm" data-lesson="se-4">
+                                    <i class="fas fa-check"></i> Mark Complete
+                                </button>
+                            </div>
+
+                            <div class="quiz-container hidden mt-6 p-6 rounded-xl bg-black/30 border border-white/10" id="se-prev-quiz">
+                                <h4 class="font-semibold text-white mb-4 flex items-center gap-2">
+                                    <i class="fas fa-brain" style="color: var(--accent-magenta);"></i>
+                                    Quick Quiz
+                                </h4>
+                                <div class="space-y-4">
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">1. DMARC helps prevent?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> Malware execution</span>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">B.</span> Email spoofing/phishing</span>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> DDoS attacks</span>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> SQL injection</span>
+                                        </div>
+                                    </div>
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">2. "No shame" culture encourages?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> Hiding mistakes</span>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">B.</span> Reporting incidents quickly</span>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">C.</span> Ignoring warnings</span>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> Blaming victims</span>
+                                        </div>
+                                    </div>
+                                    <div class="question">
+                                        <p class="text-sm text-gray-300 mb-3">3. Most effective prevention combines?</p>
+                                        <div class="quiz-options">
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">A.</span> Technology only</span>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">B.</span> Training only</span>
+                                            <div class="quiz-option" data-answer="true"><span class="mr-2">C.</span> Technical + Human controls</span>
+                                            <div class="quiz-option" data-answer="false"><span class="mr-2">D.</span> Policies only</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="check-answers-btn btn-primary mt-6 text-sm py-2 px-6">Check Answers</button>
+                                <div class="quiz-result hidden mt-4 p-4 rounded-lg"></div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Completion Certificate CTA -->
+        <section class="py-16">
+            <div class="gradient-border p-8 lg:p-12 text-center">
+                <div class="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center glow-gold">
+                    <i class="fas fa-award text-3xl text-black"></i>
+                </div>
+                <h2 class="text-3xl lg:text-4xl font-bold text-white mb-4">Ready to Earn Your Certificate?</h2>
+                <p class="text-gray-400 mb-8 max-w-xl mx-auto">Complete all lessons and quizzes to unlock your CyberShield Academy certification. Showcase your skills to employers.</p>
+                <button class="btn-primary text-lg px-8 py-4">
+                    <i class="fas fa-certificate mr-2"></i>
+                    View My Progress
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Floating Chat Icon -->
+    <div class="chat-float tooltip" data-tooltip="Chat with Support" role="button" tabindex="0" aria-label="Open chat support">
+        <i class="fas fa-comments text-white text-xl"></i>
+    </div>
+
+    <!-- Overlay for mobile sidebar -->
+    <div id="sidebarOverlay" class="fixed inset-0 bg-black/50 z-40 hidden lg:hidden" aria-hidden="true"></div>
+
+    <script>
+        // Initialize variables first
+        const completedLessons = new Set();
+        const totalLessons = document.querySelectorAll('[data-lesson]').length;
+
+        // DOM Elements - ensure they exist before using
+        const sidebar = document.getElementById('sidebar');
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        const overallProgressEl = document.getElementById('overallProgress');
+        const overallProgressBar = document.getElementById('overallProgressBar');
+
+        // Create particles for hero section
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            if (!particlesContainer) return;
+            
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (4 + Math.random() * 4) + 's';
+                
+                // Random colors
+                const colors = ['#00E5FF', '#FF007F', '#FFD700'];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Update progress
+        function updateProgress() {
+            const percentage = Math.round((completedLessons.size / totalLessons) * 100);
+            
+            if (overallProgressEl) {
+                overallProgressEl.textContent = percentage + '%';
+            }
+            if (overallProgressBar) {
+                overallProgressBar.style.width = percentage + '%';
+            }
+
+            // Update section progress bars
+            const sections = ['computer-basics', 'networking', 'cybersecurity', 'kali-linux', 'blackarch', 'social-engineering'];
+            sections.forEach(section => {
+                const sectionLessons = document.querySelectorAll(`[data-section="${section}"]`).length || 0;
+                const sectionCompleted = Array.from(completedLessons).filter(l => l.startsWith(section.split('-')[0].charAt(0))).length;
+                const sectionPercentage = sectionLessons > 0 ? Math.round((sectionCompleted / 3) * 100) : 0;
+                
+                const progressBar = document.querySelector(`.section-progress[data-section="${section}"]`);
+                if (progressBar) {
+                    progressBar.style.width = sectionPercentage + '%';
+                }
+            });
+        }
+
+        // Sidebar toggle
+        function toggleSidebar() {
+            if (sidebar) {
+                sidebar.classList.toggle('open');
+            }
+            if (sidebarOverlay) {
+                sidebarOverlay.classList.toggle('hidden');
+            }
+        }
+
+        // Language switcher
+        function switchLanguage(lang) {
+            const currentLangEl = document.getElementById('currentLang');
+            if (currentLangEl) {
+                currentLangEl.textContent = lang;
+            }
+            // In production, this would switch all text content
+            console.log('Language switched to:', lang);
+        }
+
+        // Quiz functionality
+        function initQuiz(quizBtn) {
+            const quizId = quizBtn.dataset.quiz;
+            const quizContainer = document.getElementById(quizId);
+            
+            if (!quizContainer) return;
+
+            quizBtn.addEventListener('click', () => {
+                quizContainer.classList.toggle('hidden');
+                
+                // Initialize options if not already done
+                if (!quizContainer.dataset.initialized) {
+                    const options = quizContainer.querySelectorAll('.quiz-option');
+                    options.forEach(option => {
+                        option.addEventListener('click', () => {
+                            // Remove selection from siblings
+                            const parent = option.closest('.quiz-options');
+                            if (parent) {
+                                parent.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('selected'));
+                            }
+                            option.classList.add('selected');
+                        });
+                    });
+                    quizContainer.dataset.initialized = 'true';
+                }
+            });
+
+            // Check answers button
+            const checkBtn = quizContainer.querySelector('.check-answers-btn');
+            if (checkBtn) {
+                checkBtn.addEventListener('click', () => {
+                    let correct = 0;
+                    const questions = quizContainer.querySelectorAll('.question');
+                    
+                    questions.forEach(question => {
+                        const selectedOption = question.querySelector('.quiz-option.selected');
+                        const options = question.querySelectorAll('.quiz-option');
+                        
+                        options.forEach(option => {
+                            option.classList.remove('correct', 'incorrect');
+                            const isCorrect = option.dataset.answer === 'true';
+                            if (isCorrect) {
+                                option.classList.add('correct');
+                            } else if (option === selectedOption && !isCorrect) {
+                                option.classList.add('incorrect');
+                            }
+                        });
+
+                        if (selectedOption && selectedOption.dataset.answer === 'true') {
+                            correct++;
+                        }
+                    });
+
+                    // Show result
+                    const resultDiv = quizContainer.querySelector('.quiz-result');
+                    if (resultDiv) {
+                        resultDiv.classList.remove('hidden');
+                        const percentage = Math.round((correct / questions.length) * 100);
+                        
+                        if (percentage >= 67) {
+                            resultDiv.className = 'quiz-result mt-4 p-4 rounded-lg bg-green-500/10 border border-green-500/30';
+                            resultDiv.innerHTML = `<strong class="text-green-400">${correct}/${questions.length} Correct!</strong> <span class="text-gray-400">(${percentage}% - Passed)</span>`;
+                        } else {
+                            resultDiv.className = 'quiz-result mt-4 p-4 rounded-lg bg-red-500/10 border border-red-500/30';
+                            resultDiv.innerHTML = `<strong class="text-red-400">${correct}/${questions.length} Correct</strong> <span class="text-gray-400">(${percentage}% - Try again)</span>`;
+                        }
+                    }
+                });
+            }
+        }
+
+        // Mark lesson complete
+        function initCompleteButtons() {
+            const completeBtns = document.querySelectorAll('.complete-btn');
+            completeBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const lessonId = btn.dataset.lesson;
+                    completedLessons.add(lessonId);
+                    
+                    btn.innerHTML = '<i class="fas fa-check-circle"></i> Completed';
+                    btn.disabled = true;
+                    btn.style.opacity = '0.7';
+                    btn.style.cursor = 'default';
+                    
+                    updateProgress();
+                });
+            });
+        }
+
+        // Active sidebar link on scroll
+        function initScrollSpy() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.sidebar-link');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '-20% 0px -70% 0px',
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === '#' + id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => observer.observe(section));
+        }
+
+        // Staggered animation on scroll
+        function initScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationDelay = (index % 3) * 0.1 + 's';
+                        entry.target.classList.add('stagger-item');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('article').forEach(article => {
+                observer.observe(article);
+            });
+        }
+
+        // Initialize everything when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            // Create particles
+            createParticles();
+
+            // Menu toggle
+            if (menuToggle) {
+                menuToggle.addEventListener('click', toggleSidebar);
+            }
+            if (sidebarOverlay) {
+                sidebarOverlay.addEventListener('click', toggleSidebar);
+            }
+
+            // Initialize quizzes
+            document.querySelectorAll('.quiz-btn').forEach(initQuiz);
+
+            // Initialize complete buttons
+            initCompleteButtons();
+
+            // Initialize scroll spy
+            initScrollSpy();
+
+            // Initialize scroll animations
+            initScrollAnimations();
+
+            // Initial progress update
+            updateProgress();
+        });
+
+        // Keyboard accessibility for chat icon
+        document.querySelector('.chat-float')?.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                alert('Chat support would open here!');
+            }
+        });
+    </script>
+</body>
+</html>
+```
+
+This comprehensive cybersecurity education website includes:
+
+**Design Features:**
+- Dark theme (#0B0B0B background) with neon cyan (#00E5FF), magenta (#FF007F), and gold (#FFD700) accents
+- Glassmorphism effects on navbar and sidebar
+- Animated gradient border on hero section
+- Glowing effects on buttons, titles, and interactive elements
+- Particle animation in hero area
+- Responsive design with mobile sidebar toggle
+
+**Functional Features:**
+- Sticky sidebar with table of contents and progress tracking
+- Language switcher (English, Arabic, French placeholders)
+- Collapsible quiz sections with multiple-choice questions
+- Answer checking with visual feedback (green/red highlighting)
+- Per-lesson completion tracking with progress bars
+- Download cheatsheet buttons for Kali and BlackArch sections
+- Floating chat icon with pulse animation
+- Scroll spy for active navigation highlighting
+
+**Content Sections:**
+1. Computer Basics (OS, Command Line)
+2. Networking Basics (TCP/IP, Network Tools)
+3. General Cybersecurity (Malware, Phishing, Passwords/2FA)
+4. Kali Linux (Installation methods, Essential commands)
+5. BlackArch Linux (Installation, Tool categories)
+6. Social Engineering (Definition, Types, RSA case study, Prevention)
+
+**Accessibility:**
+- Semantic HTML structure
+- ARIA labels where appropriate
+- Keyboard-navigable elements
+- Focus-visible states
+- Respects prefers-reduced-motion
